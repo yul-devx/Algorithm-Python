@@ -1,9 +1,19 @@
 ## 해시
 ## 완주하지 못한 선수 
 
+from collections import Counter
+
 def solution(participant, completion):
-    answer = ''
-    return answer
+
+    participant_dict = dict(Counter(participant))
+
+    for c in completion:
+        participant_dict[c] -= 1
+
+        if not participant_dict[c]:
+            participant_dict.pop(c)
+
+    return list(participant_dict)[0]
 
 if __name__ == "__main__":
     answer1 = solution(["leo", "kiki", "eden"], ["eden", "kiki"])
