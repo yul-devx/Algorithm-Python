@@ -1,6 +1,10 @@
 # 정렬
 ## K번째수
 
+### 접근방법: 배열 슬라이싱, 정렬
+### 시간복잡도: O(M x NlogN)
+### 공간복잡도: O(N + M)
+
 def solution(array, commands):
     answer = []
 
