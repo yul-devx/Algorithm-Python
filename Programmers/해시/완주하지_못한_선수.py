@@ -1,6 +1,10 @@
 ## 해시
 ## 완주하지 못한 선수 
 
+### 접근방법: 해시테이블
+### 시간복잡도: O(n)
+### 공간복잡도: O(n)
+
 from collections import Counter
 
 def solution(participant, completion):
