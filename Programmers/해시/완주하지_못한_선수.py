@@ -5,19 +5,20 @@
 ### 시간복잡도: O(n)
 ### 공간복잡도: O(n)
 
-from collections import Counter
+from collections import Counter     # dict 기반 자료구조
 
 def solution(participant, completion):
 
-    participant_dict = dict(Counter(participant))
+    participant_dict = Counter(participant)
 
     for c in completion:
         participant_dict[c] -= 1
 
-        if not participant_dict[c]:
-            participant_dict.pop(c)
+    for name, count in participant_dict.items():
+        if count == 1:
+            return name
 
-    return list(participant_dict)[0]
+    return ""
 
 if __name__ == "__main__":
     answer1 = solution(["leo", "kiki", "eden"], ["eden", "kiki"])
