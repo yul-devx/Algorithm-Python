@@ -2,20 +2,20 @@
 ## 0001. Two Sum
 
 ### 접근방법: 완전탐색, 해시테이블
-### 시간복잡도: O(n^2)
-### 공간복잡도: O(n^2)
+### 시간복잡도: O(N)
+### 공간복잡도: O(N)
 
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
-        
         answer = {}
 
-        nums_length = len(nums)
-        for idx in range(0, nums_length):
-            for jdx in range(idx+1, nums_length):
-                answer[nums[idx] + nums[jdx]] = [idx, jdx]
+        for idx, num in enumerate(nums):
+            if(target-num in answer):
+                return [answer[target-num], idx]
 
-        return answer[target]
+            answer[num] = idx
+
+        return []
 
 if __name__ == "__main__":
 
