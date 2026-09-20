@@ -1,6 +1,10 @@
 # 해시
 ## 폰켓몬
 
+### 접근방법: 집합
+### 시간복잡도: O(n)
+### 공간복잡도: O(n)
+
 def solution(nums):
     return min(len(set(nums)), len(nums)//2)   
 
