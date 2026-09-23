@@ -7,20 +7,12 @@
 
 class Solution:
     def maxProfit(self, prices: list[int]) -> int:
-        min_num = prices[0]
-        max_num = prices[0]
+        min_price = prices[0]
         answer = 0
 
-        for num in prices:
-
-            if (num < min_num):
-                min_num = num
-                max_num = num
-
-            if (num > max_num):
-                max_num = num
-
-            answer = max(answer, max_num - min_num)
+        for price in prices:
+            min_price = min(price, min_price)
+            answer = max(answer, price - min_price)
 
         return answer
 
