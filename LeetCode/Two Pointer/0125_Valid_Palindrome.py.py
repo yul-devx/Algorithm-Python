@@ -3,7 +3,7 @@
 
 ### 접근방법: 문자열, 투포인터
 ### 시간복잡도: O(n)
-### 공간복잡도: O(n)
+### 공간복잡도: O(1)
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
@@ -11,17 +11,15 @@ class Solution:
         sdx = 0
         edx = len(s) - 1
 
-        s_lower = s.lower()
-
         while sdx < edx: 
 
-            while sdx < edx and not s_lower[sdx].isalnum():
+            while sdx < edx and not s[sdx].lower().isalnum():
                 sdx += 1
 
-            while sdx < edx and not s_lower[edx].isalnum():
+            while sdx < edx and not s[edx].lower().isalnum():
                 edx -= 1
 
-            if s_lower[sdx] != s_lower[edx]:
+            if s[sdx].lower() != s[edx].lower():
                 return False
 
             sdx += 1
