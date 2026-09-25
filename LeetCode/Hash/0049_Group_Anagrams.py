@@ -5,13 +5,15 @@
 ### 시간복잡도: O(N x KlogK)
 ### 공간복잡도: O(N x K)
 
+from collections import defaultdict
+
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
 
-        word_dict = {}
+        word_dict = defaultdict(list)
 
         for word in strs:
-            word_dict.setdefault(tuple(sorted(word)), []).append(word)
+            word_dict[tuple(sorted(word))].append(word)
 
         return list(word_dict.values())
 
