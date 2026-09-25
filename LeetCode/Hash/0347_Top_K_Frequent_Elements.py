@@ -1,8 +1,8 @@
 # Array, Hash Table, Divide and Conquer, Sorting, etc ...
 ## 347. Top K Frequent Elements
 
-### 접근방법: 해시, 정렬
-### 시간복잡도: O(N x logN)
+### 접근방법: 해시, 버킷 정렬
+### 시간복잡도: O(N)
 ### 공간복잡도: O(N)
 
 from collections import Counter
@@ -10,9 +10,22 @@ from collections import Counter
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
 
-        answer = Counter(nums).most_common(k)
+        num_dict = Counter(nums)
 
-        return [ans[0] for ans in answer]
+        buckets = [[] for _ in range(len(nums) + 1)]
+        answer = []
+
+        for num, count in num_dict.items():
+            buckets[count].append(num)
+    
+        for bucket in reversed(buckets):
+            for num in bucket:
+                answer.append(num)
+
+                if len(answer) == k:
+                    return answer
+
+        return answer
 
 if __name__ == "__main__":
 
