@@ -5,19 +5,14 @@
 ### 시간복잡도: O(N x logN)
 ### 공간복잡도: O(N)
 
-from collections import defaultdict
+from collections import Counter
 
 class Solution:
     def topKFrequent(self, nums: list[int], k: int) -> list[int]:
 
-        num_dict = defaultdict(int)
+        answer = Counter(nums).most_common(k)
 
-        for num in nums:
-            num_dict[num] += 1
-
-        answer = sorted(num_dict, key=lambda x:num_dict[x], reverse=True)
-
-        return answer[:k]
+        return [ans[0] for ans in answer]
 
 if __name__ == "__main__":
 
