@@ -8,19 +8,16 @@
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
 
-        answer = []
+        answer = [1] * (len(nums) + 1)
 
-        nums_length = len(nums)
+        # 0 1 12 123 1234
+        for idx in range(len(nums)):
+            answer[idx+1] = answer[idx] * nums[idx]
 
-        left = [1 for _ in range(nums_length + 1)]
-        right = [1 for _ in range(nums_length + 1)]
+        print(answer)
 
-        for idx in range(0, len(nums)):
-            left[idx+1] = left[idx] * nums[idx]
-            right[nums_length - idx - 1] = right[nums_length - idx] * nums[nums_length - idx - 1]
-
-        for idx in range(nums_length):
-            answer.append(left[idx] * right[idx+1])
+        for idx in range(len(nums) - 1, -1, -1):
+            answer[idx] *= (answer[idx-1] * nums[idx])
 
         return answer
 
