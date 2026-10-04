@@ -3,21 +3,40 @@
 
 ### 접근방법: 누적곱
 ### 시간복잡도: O(N)
-### 공간복잡도: O(N)
+### 공간복잡도: O(1)
 
 class Solution:
     def productExceptSelf(self, nums: list[int]) -> list[int]:
 
-        answer = [1] * (len(nums) + 1)
+        answer = [1] * len(nums)
 
-        # 0 1 12 123 1234
+        left = 1
         for idx in range(len(nums)):
-            answer[idx+1] = answer[idx] * nums[idx]
+            answer[idx] = left
+            left *= nums[idx]
 
-        print(answer)
+        """
+        [
+            1, 
+            1*nums[0], 
+            1*nums[0]*nums[1], 
+            1*nums[0]*nums[1]*num[2]
+        ]
+        """
 
+        right = 1
         for idx in range(len(nums) - 1, -1, -1):
-            answer[idx] *= (answer[idx-1] * nums[idx])
+            answer[idx] *= right
+            right *= nums[idx]
+
+        """
+        [
+            1 *1*nums[3]*nums[2]*nums[1], 
+            1*nums[0] *1*nums[3]*nums[2], 
+            1*nums[0]*nums[1] *1*nums[3], 
+            1*nums[0]*nums[1]*num[2] *1,
+        ]
+        """
 
         return answer
 
